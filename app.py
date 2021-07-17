@@ -2,7 +2,7 @@ import pickle as ps
 import flask
 #import json
 import numpy as np
-from sklearn.externals import joblib
+#from sklearn.externals import joblib
 import pandas as pd
 from flask import Flask, render_template, request
 #from keras.models import model_from_json
