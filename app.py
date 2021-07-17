@@ -9,6 +9,8 @@ from flask import Flask, render_template, request
 #from keras.models import model_from_json
 
 app = Flask(__name__)
+pickle= pickle.load(open('Boston.pkl','rb'))
+
 
 
 @app.route("/")
@@ -35,19 +37,10 @@ def make_predictions():
         m = request.form.get('lstat')
 
         new=pd.DataFrame({'a':[a],'b':[b], 'c':[c],'d':[d],'e':[e],'f':[f],'g':[g],'h':[h],'i':[i],'j':[j],'k':[k],'l':[l],'m':[m]})
-        pred = 1000*(pkl.predict(new))
+        pred = 1000*(pickle.predict(new))
         if pred < 0:
             return render_template('index.html', response="Sorry you cannot sell this House")
         else:
             return render_template('predicting.html', response=pred)
-
-
-
-if __name__ == '__main__':
-    pkl = pickle.load(open('Boston.pkl','rb'))
-
-
-
-
 if __name__=="__main__":
     app.run(debug=True)
