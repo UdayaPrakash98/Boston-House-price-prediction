@@ -1,9 +1,8 @@
 import pickle
-
 import flask
-import json
+#import json
 import numpy as np
-#from sklearn.externals import joblib
+from sklearn.externals import joblib
 import pandas as pd
 from flask import Flask, render_template, request
 #from keras.models import model_from_json
@@ -43,4 +42,4 @@ def make_predictions():
         else:
             return render_template('predicting.html', response=pred)
 if __name__=="__main__":
-    app.run(debug=True)
+    app.run()
