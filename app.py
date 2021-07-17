@@ -1,4 +1,4 @@
-import pickle
+import pickle as ps
 import flask
 #import json
 import numpy as np
@@ -8,7 +8,7 @@ from flask import Flask, render_template, request
 #from keras.models import model_from_json
 
 app = Flask(__name__)
-pickle= pickle.load(open('Boston.pkl','rb'))
+
 
 
 
@@ -41,5 +41,7 @@ def make_predictions():
             return render_template('index.html', response="Sorry you cannot sell this House")
         else:
             return render_template('predicting.html', response=pred)
+if __name__=="__main__":
+    pickle= ps.load(open('Boston.pkl','rb'))
 if __name__=="__main__":
     app.run()
