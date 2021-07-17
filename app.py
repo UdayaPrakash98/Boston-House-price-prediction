@@ -37,7 +37,7 @@ def make_predictions():
         m = request.form.get('lstat')
 
         new=pd.DataFrame({'a':[a],'b':[b], 'c':[c],'d':[d],'e':[e],'f':[f],'g':[g],'h':[h],'i':[i],'j':[j],'k':[k],'l':[l],'m':[m]})
-        pred = 1000*(z.predict(new))
+        pred = 1000*(np.round(z.predict(new)))
         if pred < 0:
             return render_template('index.html', response="Sorry you cannot sell this House")
         else:
