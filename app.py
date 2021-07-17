@@ -1,4 +1,4 @@
-import pickle as ps
+import pickle
 import flask
 #import json
 import numpy as np
@@ -8,6 +8,7 @@ from flask import Flask, render_template, request
 #from keras.models import model_from_json
 
 app = Flask(__name__)
+z = pickle.load(open('Boston.pkl', 'rb'))
 
 
 
@@ -36,12 +37,11 @@ def make_predictions():
         m = request.form.get('lstat')
 
         new=pd.DataFrame({'a':[a],'b':[b], 'c':[c],'d':[d],'e':[e],'f':[f],'g':[g],'h':[h],'i':[i],'j':[j],'k':[k],'l':[l],'m':[m]})
-        pred = 1000*(pickle.predict(new))
+        pred = 1000*(z.predict(new))
         if pred < 0:
             return render_template('index.html', response="Sorry you cannot sell this House")
         else:
             return render_template('predicting.html', response=pred)
-if __name__=="__main__":
-    pickle= ps.load(open('Boston.pkl','rb'))
+
 if __name__=="__main__":
     app.run()
